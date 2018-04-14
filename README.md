@@ -1,14 +1,6 @@
 **Single Page Application**
 
 
-
-**Types of uses:**
-*   **Bookmaker**
-*   **Admin**
-*   **Client**
-*   **Guest**
-
-
 1.Xls file parse to List of Skill's object.
    - List<Skill> skills consists of two objets(Hard skills, Soft skills). 
    - Some of this objects have child List. 
