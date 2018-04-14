@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Actor');
+
+
+html{
+    background-color: #1d8bdd59;
+    color:#212121;
+}
+li {
+    margin: 5px;
+    list-style-type: none;
+}
+
+label {
+    vertical-align: middle;
+    margin-left: 11px;
+    font-size: 1em;
+    font-family: 'Actor', sans-serif;
+}
+
+.arrow{
+    vertical-align: middle;
+    width: 12px;
+
+}
+
+#second {
+    color: white;
+    background-color: #46535c;
+    border-radius: 8px;
+}
+
