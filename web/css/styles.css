@@ -29,3 +29,46 @@ label {
     border-radius: 8px;
 }
 
+
+
+.multi-level input[type=checkbox] ~ .sub-item{
+    display: none;
+}
+
+.multi-level input[type=checkbox]:checked ~ .sub-item{
+    display: block;
+}
+
+
+
+span.highlight {
+    background-color: #db3405; cursor: pointer; }
+span.splink {
+    color: #212121; cursor: pointer; }
+
+.head-menu {
+    display: inline-flex;
+    margin-top: -8px;
+    display: inline-flex;
+    background-color: #00BCD4;
+    width: 100%;
+    color: white;
+    padding: 11px;
+    font-size: 1.4em;
+}
+
+.footer-menu {
+    display: inline-flex;
+    margin-top: -8px;
+    display: inline-flex;
+    background-color: #00BCD4;
+    width: 100%;
+    color: white;
+    padding: 11px;
+    font-size: 1.4em;
+    margin-bottom: -10px;
+}
+.sub-point-1{
+    margin-left: 200px
+;
+}

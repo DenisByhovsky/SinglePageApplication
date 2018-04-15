@@ -2,7 +2,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=windws-1251"/>
     <%--<meta charset="utf-8">--%>
 
     <title>Skill Matrix</title>
@@ -19,15 +19,16 @@
 
     <div class="nav">
 
-        <input type="checkbox" id="menu"/>
-        <label for="menu" id="nav-icon"> Hard Skills</label>
-        <input type="checkbox" id="menu1"/>
-        <label for="menu1" id="nav-icon"> Soft  Skills</label>
-        <body>
-        <form>
-            <p><input type="search" name="q" placeholder="Поиск по сайту">
-                <input type="submit" value="Найти"></p>
-        </form>
+        <ul class="head-menu">
+            <li class="sub-point"><input type="checkbox" id="menu"/>
+                <label for="menu" id="nav-icon"> Hard Skills</label></li>
+            <li class="sub-point"> <input type="checkbox" id="menu1"/>
+                <label for="menu1" id="nav-icon"> Soft  Skills</label></li>
+            <li class="sub-point-1">
+                <input id="spterm" type="text" name="spterm" placeholder="Search?"><br />
+                <div id="spresult"> </div>
+            </li>
+        </ul>
         <%--{{#each this}}--%>
         <div class="multi-level">
             <script id="skills-template" type="x-handlebars-template">
@@ -97,17 +98,18 @@
 
 
 
-
+<ul class="footer-menu">
+<li class="foot-item">
 <form role="form" method="post" action="/command" id="addElement">
     <input type="hidden" name="command" value="addelem">
     <input id="n-name" type="text" name="nw-name"  required autocomplete="off"><br>
     <div class="add-img">
         <input type="submit" value="Add element" id="second">
     </div>
-</form>
+</form></li>
+    </li>
 
-
-
+    <li class="foot-item">
 <form role="form" method="post" action="/command" id="delElement">
     <input type="hidden" name="command" value="delelem">
 
@@ -115,9 +117,9 @@
         <input type="submit" value="Delete element" id="second">
     </div>
 </form>
+    </li>
 
-
-
+    <li class="foot-item">
 <form role="form" method="post" action="/command" id="changeName">
     <input type="hidden" name="command" value="chaName">
 
@@ -127,6 +129,8 @@
         <input type="submit" value="change" id="second">
     </div>
 </form>
+    </li>
+</ul>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/handlebars-v4.0.11.js"></script>
 <script src="js/all.js"></script>
