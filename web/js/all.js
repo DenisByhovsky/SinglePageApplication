@@ -82,44 +82,44 @@ $(function(){
 
 
 jQuery(document).ready(function(){
-    var minlen = 3; // минимальная длина слова
-    var paddingtop = 30; // отступ сверху при прокрутке
-    var scrollspeed = 200; // время прокрутки
-    var keyint = 1000; // интервал между нажатиями клавиш
+    var minlen = 3;
+    var paddingtop = 30;
+    var scrollspeed = 200;
+    var keyint = 1000;
     var term = '';
     var n = 0;
     var time_keyup = 0;
     var time_search = 0;
 
     jQuery('body').delegate('#spgo', 'click', function(){
-        jQuery('body,html').animate({scrollTop: jQuery('span.highlight:first').offset().top-paddingtop}, scrollspeed); // переход к первому фрагменту
+        jQuery('body,html').animate({scrollTop: jQuery('span.highlight:first').offset().top-paddingtop}, scrollspeed);
     });
 
     function dosearch() {
         term = jQuery('#spterm').val();
-        jQuery('span.highlight').each(function(){ //удаляем старую подсветку
+        jQuery('span.highlight').each(function(){
             jQuery(this).after(jQuery(this).html()).remove();
         });
         var t = '';
-        jQuery('div.nav').each(function(){ // в селекторе задаем область поиска
-            jQuery(this).html(jQuery(this).html().replace(new RegExp(term, 'ig'), '<span class="highlight">$&</span>')); // выделяем найденные фрагменты
-            n = jQuery('span.highlight').length; // количество найденных фрагментов
+        jQuery('div.nav').each(function(){
+            jQuery(this).html(jQuery(this).html().replace(new RegExp(term, 'ig'), '<span class="highlight">$&</span>'));
+            n = jQuery('span.highlight').length;
             console.log('n = '+n);
             if (n==0)
                 jQuery('#spresult').html('Nothing found');
             else
                 jQuery('#spresult').html('Found: '+n+'. <span class="splink" id="spgo">Go next</span>');
-            if (n>1) // если больше одного фрагмента, то добавляем переход между ними
+            if (n>1)
             {
                 var i = 0;
                 jQuery('span.highlight').each(function(i){
-                    jQuery(this).attr('n', i++); // нумеруем фрагменты, более простого способа искать следующий элемент не нашел
+                    jQuery(this).attr('n', i++);
                 });
-                jQuery('span.highlight').not(':last').attr({title: 'Click to next element'}).click(function(){ // всем фрагментам, кроме последнего, добавляем подсказку
-                    jQuery('body,html').animate({scrollTop: jQuery('span.highlight:gt('+jQuery(this).attr('n')+'):first').offset().top-paddingtop}, scrollspeed); // переход к следующему фрагменту
+                jQuery('span.highlight').not(':last').attr({title: 'Click to next element'}).click(function(){
+                    jQuery('body,html').animate({scrollTop: jQuery('span.highlight:gt('+jQuery(this).attr('n')+'):first').offset().top-paddingtop}, scrollspeed);
                 });
                 jQuery('span.highlight:last').attr({title: 'Click to search form'}).click(function(){
-                    jQuery('body,html').animate({scrollTop: jQuery('#spterm').offset().top-paddingtop}, scrollspeed); // переход к форме поиска
+                    jQuery('body,html').animate({scrollTop: jQuery('#spterm').offset().top-paddingtop}, scrollspeed);
                 });
             }
         });
@@ -128,23 +128,22 @@ jQuery(document).ready(function(){
     jQuery('#spterm').keyup(function(){
         var d1 = new Date();
         time_keyup = d1.getTime();
-        if (jQuery('#spterm').val()!=term) // проверяем, изменилась ли строка
-            if (jQuery('#spterm').val().length>=minlen) { // проверяем длину строки
-                setTimeout(function(){ // ждем следующего нажатия
+        if (jQuery('#spterm').val()!=term) 
+            if (jQuery('#spterm').val().length>=minlen) {
+                setTimeout(function(){
                     var d2 = new Date();
                     time_search = d2.getTime();
-                    if (time_search-time_keyup>=keyint) // проверяем интервал между нажатиями
-                        dosearch(); // если все в порядке, приступаем к поиску
+                        dosearch();
                 }, keyint);
             }
             else
-                jQuery('#spresult').html('&nbsp'); // если строка короткая, убираем текст из DIVа с результатом
+                jQuery('#spresult').html('&nbsp');
     });
 
-    if (window.location.hash!="") // бонус
+    if (window.location.hash!="")
     {
-        var t = window.location.hash.substr(1, 50); // вырезаем текст
-        jQuery('#spterm').val(t).keyup(); // вставляем его в форму поиска
-        jQuery('#spgo').click(); // переходим к первому фрагменту
+        var t = window.location.hash.substr(1, 50);
+        jQuery('#spterm').val(t).keyup();
+        jQuery('#spgo').click();
     }
 });
