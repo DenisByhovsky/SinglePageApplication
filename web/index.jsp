@@ -43,7 +43,7 @@
                         {{#each childList}}
                         <li>
                             <div class="sub-item">
-                                <input type="checkbox" id="{{rowNumber}}"/>
+                                <input type="checkbox" id="{{columnNumber}}-{{rowNumber}}"/>
 
                                 <img src="images/click.png" class="arrow"><label for="{{rowNumber}}">{{name}}</label>
                                 <label for="{{rowNumber}}">{{childList.length}}</label>
@@ -75,16 +75,12 @@
                                     </li>
                                     {{/each}}
                                 </ul>
-                                {{else}}
-                                <label for="{{rowNumber}}">- {{name}}</label>
-                                <label for="{{rowNumber}}">{{childList.length}}</label>
 
                             </div>
                         </li>
                         {{/each}}
                     </ul>
-                    {{else}}
-                    <label for="{{rowNumber}}">- {{name}}</label>
+
 
                 </div>
                 {{/each}}
@@ -101,32 +97,32 @@
 <ul class="footer-menu">
 <li class="foot-item">
 <form role="form" method="post" action="/command" id="addElement">
-    <input type="hidden" name="command" value="addelem">
-    <input id="n-name" type="text" name="nw-name"  required autocomplete="off"><br>
+    <input type="hidden" name="command" value="add">
+    <input id="n-name" type="text" name="name"  required autocomplete="off"><br>
     <div class="add-img">
-        <input type="submit" value="Add element" id="second">
+        <input type="submit" onclick="AddElem()" value="Add element" id="second">
     </div>
 </form></li>
     </li>
 
     <li class="foot-item">
 <form role="form" method="post" action="/command" id="delElement">
-    <input type="hidden" name="command" value="delelem">
+    <input type="hidden" name="command" value="deleteElem">
 
     <div class="add-img">
-        <input type="submit" value="Delete element" id="second">
+        <input type="submit" onclick="deleteElem()"  value="Delete element" id="second">
     </div>
 </form>
     </li>
 
     <li class="foot-item">
 <form role="form" method="post" action="/command" id="changeName">
-    <input type="hidden" name="command" value="chaName">
+    <input type="hidden" name="command" value="changeName">
 
-    <input id="ch-name" type="text" name="new-name"  required autocomplete="off"><br>
+    <input id="ch-name" type="text" name="name"  required autocomplete="off"><br>
 
     <div class="add-img">
-        <input type="submit" value="change" id="second">
+        <input type="submit" onclick="changeName()"   value="Change name" id="second">
     </div>
 </form>
     </li>

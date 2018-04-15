@@ -1,5 +1,4 @@
 $.getJSON("runner.json", function (data) {
-
     // Write the data into our global variable.
     products = data;
 // json  в переменную
@@ -12,21 +11,13 @@ $.getJSON("runner.json", function (data) {
 
 
 function generateAllProductsHTML(data) {
-
     //Ггенерируем данные с handlebars
-
-    // var list = $('.all-skills .skills-list');
     var list = $(".multi-level");
 
     var theTemplateScript = $('#skills-template').html();
     var theTemplate = Handlebars.compile(theTemplateScript);
     list.append(theTemplate(data));}
 
-//function removeDummy() {
-  //  var elem = document.getElementById('#C4');
-    //elem.parentNode.removeChild(elem);
-    //return false;
-//}
 
 //active get id el
 var chbx = $('.nav :checkbox').on('change', function() {
@@ -35,18 +26,16 @@ var chbx = $('.nav :checkbox').on('change', function() {
 
 arr = chbx.attr('id').split('-');
 
-
-$(function(){
+//ADD
+$(function addElem(){
     function getData() {
 
             var dataToBeSent = {
 
-
 // get id and parse on row and col
-
-
-                row : arr[0],
-                col : arr[1]
+                row : arr[0]+1,
+                col : arr[1],
+                name:name,
 
 
             }; // you can change parameter name
@@ -56,10 +45,7 @@ $(function(){
                 data: dataToBeSent,
                 type: 'GET',
                 dataType: 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
-                success: function (response) {
-                    $('.multi-level').html(response);
-
-                    // create an empty div in your page with some id
+                success: function generateAllProductsHTML(data){
                 },
 
                 error: function (request, textStatus, errorThrown) {
@@ -69,6 +55,67 @@ $(function(){
         }
 
 });
+
+
+//POST delete elem
+$(function deleteElem(){
+    function getData() {
+
+        var dataToBeSent2 = {
+
+// get id and parse on row and col
+            row : arr[0],
+            col : arr[1],
+
+        }; // you can change parameter name
+
+        $.ajax({
+            url: 'command', // Your Servlet mapping or JSP(not suggested)
+            data: dataToBeSent2,
+            type: 'POST',
+            dataType: 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
+            success: function generateAllProductsHTML(data){
+            },
+
+            error: function (request, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+
+});
+
+
+
+//PUT change name
+$(function changeName(){
+    function getData() {
+        var dataToBeSent1 = {
+
+// get id and parse on row and col
+            row : arr[0],
+            col : arr[1],
+            name:name,
+
+
+        }; // you can change parameter name
+
+        $.ajax({
+            url: 'command', // Your Servlet mapping or JSP(not suggested)
+            data: dataToBeSent1,
+            type: 'PUT',
+            dataType: 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
+            success: function generateAllProductsHTML(data){
+            },
+
+            error: function (request, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+
+});
+
 
 
 
@@ -128,7 +175,7 @@ jQuery(document).ready(function(){
     jQuery('#spterm').keyup(function(){
         var d1 = new Date();
         time_keyup = d1.getTime();
-        if (jQuery('#spterm').val()!=term) 
+        if (jQuery('#spterm').val()!=term) // проверяем, изменилась ли строка
             if (jQuery('#spterm').val().length>=minlen) {
                 setTimeout(function(){
                     var d2 = new Date();
