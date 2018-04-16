@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Skill {
-    private String name;
+    private String value;
     private int columnNumber;
     private int rowNumber;
 
     private List<Skill> childList = new ArrayList<Skill>();
 
-
-
     public Skill() {
     }
 
-    public Skill(String name, int columnNumber, int rowNumber) {
-        this.name = name;
+    public Skill(String value, int columnNumber, int rowNumber) {
+        this.value = value;
         this.columnNumber = columnNumber;
         this.rowNumber = rowNumber;
 
@@ -39,11 +37,11 @@ public class Skill {
     }
 
     public String getName() {
-        return name;
+        return value;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String value) {
+        this.value = value;
     }
 
     public int getColumnNumber() {
@@ -65,7 +63,7 @@ public class Skill {
     @Override
     public String toString() {
         return "Skill{" +
-                "name='" + name + '\'' +
+                "name='" + value + '\'' +
                 ", columnNumber=" + columnNumber +
                 ", rowNumber=" + rowNumber +
                 ", childList=" + childList +

@@ -14,33 +14,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Processing {
+    private static final String PATH_NAME ="9.xls";
+
     public HSSFSheet sheet;
 
     public Processing() {
     }
 
-
     public void read() {
-        File excel = new File("D:/9.xls");
+        File excel = new File(PATH_NAME);
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(excel);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         HSSFWorkbook book = null;
         try {
             book = new HSSFWorkbook(fis);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         HSSFSheet sheet = book.getSheetAt(0);
         this.sheet = sheet;
-
     }
-
 
     private   List<Skill> parse(int startRow, int endRow, int columnNumber) {
         List<Skill> skills = new ArrayList<Skill>();
@@ -50,34 +47,27 @@ public class Processing {
             String cellValue = cell.getStringCellValue();
             int columnIndex = cell.getColumnIndex();
             int rowIndex = cell.getRowIndex();
-
             int nextElementNumber = getNextElement(i + 1, endRow, columnNumber);
             Skill skill = new Skill(cellValue, columnIndex, rowIndex);
             skill.setChildList(parse(i + 1, nextElementNumber, columnNumber + 1));
 
             //int nestedSize =skill.getNestedSize();
-            //System.out.println(nestedSize);
             skills.add(skill);
-            System.out.println("SIZE"+skills.size());
-
             i = nextElementNumber;
-
         }
-
         return skills;
     }
 
     private int getNextElement(int startRow,int endRow, int columnNumber) {
-        int foundRowNumber = endRow;
+        int indRowNumber = endRow;
         for (int i = startRow; i < endRow; i++) {
             Row row = sheet.getRow(i);
             if (row.getCell(columnNumber) != null) {
-                foundRowNumber = i;
+                indRowNumber = i;
                 break;
             }
         }
-
-        return foundRowNumber;
+        return indRowNumber;
     }
 
     public List<Skill> parse() {
