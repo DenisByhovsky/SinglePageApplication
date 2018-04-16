@@ -20,13 +20,6 @@ public class Skill {
 
     }
 
-    public void add(Skill skill){
-        childList.add(skill);
-    }
-
-    public void remove(Skill skill){
-        childList.remove(skill);
-    }
 
     public List<Skill> getChildList() {
         return childList;
