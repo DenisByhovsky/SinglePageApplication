@@ -2,7 +2,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html;charset=windws-1251"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=Cp1251"/>
     <%--<meta charset="utf-8">--%>
 
     <title>Skill Matrix</title>
@@ -50,7 +50,7 @@
                                 <ul>
                                     {{#each childList}}
                                     <li>
-                                        <div class="sub-item">
+                                        <div class="sub-item-1">
                                             <input type="checkbox" id="{{rowNumber}}"/>
 
                                             <img  src="images/click.png" class="arrow"><label
@@ -59,7 +59,7 @@
                                             <ul>
                                                 {{#each childList}}
                                                 <li>
-                                                    <div class="sub-item">
+                                                    <div class="sub-item-2">
                                                         <input type="checkbox" id="{{rowNumber}}"/>
                                                         <label for="{{rowNumber}}">- {{name}}</label>
                                                         <label for="{{rowNumber}}">{{childList.length}}</label>
@@ -87,7 +87,6 @@
             </script>
         </div>
 
-
     </div>
 
 </div>
@@ -96,35 +95,20 @@
 
 <ul class="footer-menu">
 <li class="foot-item">
-<form role="form" method="post" action="/command" id="addElement">
-    <input type="hidden" name="command" value="add">
-    <input id="n-name" type="text" name="name"  required autocomplete="off"><br>
-    <div class="add-img">
-        <input type="submit" onclick="AddElem()" value="Add element" id="second">
-    </div>
-</form></li>
+    <input  type="text"  id="add"><br>
+    <a id="addElement" href="#">Add element</a>
+    <div id="container"></div>
+</li>
     </li>
 
     <li class="foot-item">
-<form role="form" method="post" action="/command" id="delElement">
-    <input type="hidden" name="command" value="deleteElem">
-
-    <div class="add-img">
-        <input type="submit" onclick="deleteElem()"  value="Delete element" id="second">
-    </div>
-</form>
+    <input type="text" id="delete">
+        <a id="delElement" href="#">Delete</a>
     </li>
 
     <li class="foot-item">
-<form role="form" method="post" action="/command" id="changeName">
-    <input type="hidden" name="command" value="changeName">
-
-    <input id="ch-name" type="text" name="name"  required autocomplete="off"><br>
-
-    <div class="add-img">
-        <input type="submit" onclick="changeName()"   value="Change name" id="second">
-    </div>
-</form>
+    <input  type="text"  id="change"><br>
+        <a id="changeName" href="#">Change name</a>
     </li>
 </ul>
 <script src="js/jquery-3.3.1.min.js"></script>

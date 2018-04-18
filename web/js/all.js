@@ -11,7 +11,7 @@ $.getJSON("runner.json", function (data) {
 
 
 function generateAllProductsHTML(data) {
-    //Ггенерируем данные с handlebars
+    //Gen data
     var list = $(".multi-level");
 
     var theTemplateScript = $('#skills-template').html();
@@ -26,96 +26,76 @@ var chbx = $('.nav :checkbox').on('change', function() {
 
 arr = chbx.attr('id').split('-');
 
-//ADD
-$(function addElem(){
-    function getData() {
-
-            var dataToBeSent = {
-
-// get id and parse on row and col
-                row : arr[0]+1,
-                col : arr[1],
-                name:name,
 
 
-            }; // you can change parameter name
 
-            $.ajax({
-                url: 'command', // Your Servlet mapping or JSP(not suggested)
-                data: dataToBeSent,
-                type: 'GET',
-                dataType: 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
-                success: function generateAllProductsHTML(data){
-                },
+//PUT delete elem
 
-                error: function (request, textStatus, errorThrown) {
-                    alert(errorThrown);
-                }
-            });
+$('#changeName').click(function () {
+
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: 'command',
+        data: {
+            'name': $("#change").val(),
+            'row': arr[0],
+            'col': arr[1]
+        },
+        success: function (response) {
+            $('.item').html(response);
+        },
+        error: function()
+        {
+            $('.item').html("Nothing");
         }
-
+    });
 });
 
 
-//POST delete elem
-$(function deleteElem(){
-    function getData() {
+//GET add elem
 
-        var dataToBeSent2 = {
+$('#addElement').click(function () {
 
-// get id and parse on row and col
-            row : arr[0],
-            col : arr[1],
-
-        }; // you can change parameter name
-
-        $.ajax({
-            url: 'command', // Your Servlet mapping or JSP(not suggested)
-            data: dataToBeSent2,
-            type: 'POST',
-            dataType: 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
-            success: function generateAllProductsHTML(data){
-            },
-
-            error: function (request, textStatus, errorThrown) {
-                alert(errorThrown);
-            }
-        });
-    }
-
+    $.ajax({
+        type: "GET",
+        cache: false,
+        url: 'command',
+        data: {
+            'name': $("#add").val(),
+            'row': arr[0],
+            'col': arr[1]
+        },
+        success: function (response) {
+            $('.item').html(response);
+        },
+        error: function()
+        {
+            $('.item').html("Nothing");
+        }
+    });
 });
 
+//POST del elem
 
-
-//PUT change name
-$(function changeName(){
-    function getData() {
-        var dataToBeSent1 = {
-
-// get id and parse on row and col
-            row : arr[0],
-            col : arr[1],
-            name:name,
-
-
-        }; // you can change parameter name
-
-        $.ajax({
-            url: 'command', // Your Servlet mapping or JSP(not suggested)
-            data: dataToBeSent1,
-            type: 'PUT',
-            dataType: 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
-            success: function generateAllProductsHTML(data){
-            },
-
-            error: function (request, textStatus, errorThrown) {
-                alert(errorThrown);
-            }
-        });
-    }
-
+$('#delElement').click(function () {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: 'command',
+        data: {
+            'row': arr[0],
+            'col': arr[1]
+        },
+        success: function (response) {
+            $('.item').html(response);
+        },
+        error: function()
+        {
+            $('.item').html("Nothing");
+        }
+    });
 });
-
 
 
 
@@ -194,3 +174,6 @@ jQuery(document).ready(function(){
         jQuery('#spgo').click();
     }
 });
+
+
+
