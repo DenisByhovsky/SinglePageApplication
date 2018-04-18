@@ -17,28 +17,28 @@ public class SPAServlet extends HttpServlet {
     //Add element
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int column = Integer.parseInt(req.getParameter("row"));
-        int row = Integer.parseInt(req.getParameter("col"));
+        int row = Integer.parseInt(req.getParameter("row"));
+        int column = Integer.parseInt(req.getParameter("col"));
         String name= req.getParameter("name");
         new ExcelAction().sheetOperation(row,column,"add",name);
         new JSONRunner().createJSON();
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write("good");
+        resp.getWriter().write("name");
     }
 
     //Delete element
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //int column = Integer.parseInt(req.getParameter("row"));
-        //int row = Integer.parseInt(req.getParameter("col"));
+        int row = Integer.parseInt(req.getParameter("row"));
+        int column = Integer.parseInt(req.getParameter("col"));
         String name= req.getParameter("name");
-        //new ExcelAction().sheetOperation(row,column,"delete",name);
+        new ExcelAction().sheetOperation(row,column,"delete",name);
         new JSONRunner().createJSON();
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write("good");;
+        resp.getWriter().write(req.getParameter("name"));
     }
 
     //Change element
@@ -51,7 +51,7 @@ public class SPAServlet extends HttpServlet {
         new JSONRunner().createJSON();
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write("good");
+        resp.getWriter().write("name");
     }
 
 }
