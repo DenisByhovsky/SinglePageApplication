@@ -2,7 +2,11 @@ package com.epam.ajax.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+/** Skill
+ * @author Denis Byhovsky
+ */
 public class Skill {
     private String value;
     private int columnNumber;
@@ -10,16 +14,13 @@ public class Skill {
 
     private List<Skill> childList = new ArrayList<Skill>();
 
-    public Skill() {
-    }
+    public Skill() { }
 
     public Skill(String value, int columnNumber, int rowNumber) {
         this.value = value;
         this.columnNumber = columnNumber;
         this.rowNumber = rowNumber;
-
     }
-
 
     public List<Skill> getChildList() {
         return childList;
@@ -29,28 +30,45 @@ public class Skill {
         this.childList = childList;
     }
 
-    public String getName() {
+    public String getValue() {
         return value;
-    }
-
-    public void setName(String value) {
-        this.value = value;
     }
 
     public int getColumnNumber() {
         return columnNumber;
     }
 
-    public void setColumnNumber(int columnNumber) {
-        this.columnNumber = columnNumber;
-    }
-
     public int getRowNumber() {
         return rowNumber;
     }
 
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setColumnNumber(int columnNumber) {
+        this.columnNumber = columnNumber;
+    }
+
     public void setRowNumber(int rowNumber) {
         this.rowNumber = rowNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Skill skill = (Skill) o;
+        return columnNumber == skill.columnNumber &&
+                rowNumber == skill.rowNumber &&
+                Objects.equals(value, skill.value) &&
+                Objects.equals(childList, skill.childList);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(value, columnNumber, rowNumber, childList);
     }
 
     @Override

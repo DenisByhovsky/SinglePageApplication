@@ -1,36 +1,30 @@
 $.getJSON("runner.json", function (data) {
     // Write the data into our global variable.
     products = data;
-// json  в переменную
+    // json  to variable
     // Call a function to create HTML for all the products.
     generateAllProductsHTML(products);
-
     // Manually trigger a hashchange to start the app.
     $(window).trigger('hashchange');
 });
 
-
 function generateAllProductsHTML(data) {
-    //Gen data
+    //Generate  data
     var list = $(".multi-level");
-
     var theTemplateScript = $('#skills-template').html();
     var theTemplate = Handlebars.compile(theTemplateScript);
-    list.append(theTemplate(data));}
+    list.append(theTemplate(data));
+}
 
-
-//active get id el
-var chbx = $('.multi-level :checkbox').on('change', function() {
-   console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
+//Get id of active element
+var chbx = $('.sub-item :checkbox').on('change', function() {
+    console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
 });
 
+//Split row and column data
 //arr = chbx.attr('id').split('-');
 
-
-
-
-//PUT delete elem
-
+//Change name function
 $('#changeName').click(function () {
 
     $.ajax({
@@ -52,19 +46,16 @@ $('#changeName').click(function () {
         },
         error: function()
         {
-
             $('.sub-item').html("Nothing");
-
 
         }
     });
 });
 
 
-//GET add elem
-
+//Add element function
 $('#addElement').click(function () {
-    arr = chbx.attr('id').split('-');
+    //   arr = chbx.attr('id').split('-');
     $.ajax({
         type: "GET",
         cache: false,
@@ -72,35 +63,26 @@ $('#addElement').click(function () {
         data: {
 
             'name': $("#add").val(),
-            'row': arr[0],
-            'col': arr[1]
+            'row': 2,
+            'col': 2
         },
         success: function (response) {
             /* Adds Element BEFORE NeighborElement */
             Element.prototype.appendBefore = function (element) {
                 element.parentNode.insertBefore(this, element);
             }, false;
-//multi-level
             var chbx = $('.sub-item :checkbox').on('change', function() {
-                // console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
             });
-
-
-
-
             /* Adds Element AFTER NeighborElement */
             Element.prototype.appendAfter = function (element) {
                 element.parentNode.insertBefore(this, element.nextSibling);
             }, false;
-
             /* Typical Creation and Setup A New Orphaned Element Object */
             var NewElement = document.createElement('div');
             NewElement.innerHTML = 'JAVA EE';
             NewElement.id = 'ss';
-
             /*  Add NewElement BEFORE -OR- AFTER Using the Aforementioned Prototypes */
             NewElement.appendAfter(document.getElementById(chbx.attr('id')));
-
         },
         error: function()
         {
@@ -122,15 +104,11 @@ $('#delElement').click(function () {
             'row': arr[0],
             'col': arr[1],
             'name':$("#delete").val()
-
         },
         success: function (response) {
-            // $('.sub-item').html("Nothing");
             var chbx = $('.sub-item :checkbox').on('change', function() {
-                // console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
             });
             var elem = document.getElementById(chbx.attr('id'));
-
             elem.remove();
         },
         error: function()
@@ -140,17 +118,12 @@ $('#delElement').click(function () {
     });
 });
 
-
-
 // get id and parse on row and col
 //arr = chbx.attr('id').split('-');
-
 //var row= arr[0];
 //var col = arr[1];
 
-
-
-
+//Search function
 jQuery(document).ready(function(){
     var minlen = 3;
     var paddingtop = 30;
@@ -203,7 +176,7 @@ jQuery(document).ready(function(){
                 setTimeout(function(){
                     var d2 = new Date();
                     time_search = d2.getTime();
-                        dosearch();
+                    dosearch();
                 }, keyint);
             }
             else

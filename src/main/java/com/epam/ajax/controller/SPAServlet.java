@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/** SPAServlet
+ * @author Denis Byhovsky
+ */
 @WebServlet("/command")
 public class SPAServlet extends HttpServlet {
 
-    public static final String EX_PATH ="7.xls";
-
-    //Add element
+    public static final String EX_PATH ="SkillMatrix.xls";
+    /**
+     * Add element method.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String xlsPath = req.getServletContext().getRealPath("/")+EX_PATH ;
@@ -28,7 +32,9 @@ public class SPAServlet extends HttpServlet {
         resp.getWriter().write(name);
     }
 
-    //Delete element
+    /**
+     * Delete element method.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String xlsPath = req.getServletContext().getRealPath("/")+EX_PATH ;
@@ -42,7 +48,9 @@ public class SPAServlet extends HttpServlet {
         resp.getWriter().write(req.getParameter(name));
     }
 
-    //Change element
+    /**
+     * Change element method.
+     */
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String xlsPath = req.getServletContext().getRealPath("/")+EX_PATH ;
@@ -56,4 +64,8 @@ public class SPAServlet extends HttpServlet {
         resp.getWriter().write(name);
     }
 
+    @Override
+    public void destroy() {
+        super.destroy();
+    }
 }
