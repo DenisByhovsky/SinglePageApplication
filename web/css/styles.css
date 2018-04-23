@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Actor');
 
-
+body{
+    margin-left: -8px;
+    width: 100%;
+}
 html{
     background-color: #1d8bdd59;
     color:#212121;
@@ -29,16 +32,12 @@ label {
     border-radius: 8px;
 }
 
-
-
-.multi-level input[type=checkbox] ~ .sub-item{
-    display: none;
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.8em;
+    font-family: 'Actor', sans-serif;
 }
-
-.multi-level input[type=checkbox]:checked ~ .sub-item{
-    display: block;
-}
-
 
 
 span.highlight {
@@ -58,9 +57,6 @@ span.splink {
 }
 
 .footer-menu {
-    display: inline-flex;
-    margin-top: -8px;
-    display: inline-flex;
     background-color: #00BCD4;
     width: 100%;
     color: white;
@@ -69,6 +65,30 @@ span.splink {
     margin-bottom: -10px;
 }
 .sub-point-1{
-    margin-left: 200px
-;
+    margin-left: 200px;
+}
+
+.multi-level{
+    margin-left: 30px;
+}
+
+.sub-item-1{
+    background-color: #21d8f3;
+    border-radius: 5px;
+}
+
+.sub-item-2{
+    background-color: #21d8f3;
+}
+
+.foot-item-add{
+    display: inline-flex;
+}
+
+.foot-item-del{
+    display: inline-flex;
+}
+
+.foot-item-chan{
+    display: inline-flex;
 }

@@ -20,11 +20,11 @@ function generateAllProductsHTML(data) {
 
 
 //active get id el
-var chbx = $('.nav :checkbox').on('change', function() {
-    console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
+var chbx = $('.multi-level :checkbox').on('change', function() {
+   console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
 });
 
-arr = chbx.attr('id').split('-');
+//arr = chbx.attr('id').split('-');
 
 
 
@@ -43,11 +43,19 @@ $('#changeName').click(function () {
             'col': arr[1]
         },
         success: function (response) {
-            $('.item').html(response);
+            // $('.sub-item').html("Nothing");
+            var chbx = $('.sub-item :checkbox').on('change', function() {
+                // console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
+            })
+
+            document.getElementById(chbx.attr('id')).innerHTML=$("#change").val();
         },
         error: function()
         {
-            $('.item').html("Nothing");
+
+            $('.sub-item').html("Nothing");
+
+
         }
     });
 });
@@ -56,22 +64,49 @@ $('#changeName').click(function () {
 //GET add elem
 
 $('#addElement').click(function () {
-
+    arr = chbx.attr('id').split('-');
     $.ajax({
         type: "GET",
         cache: false,
         url: 'command',
         data: {
+
             'name': $("#add").val(),
             'row': arr[0],
             'col': arr[1]
         },
         success: function (response) {
-            $('.item').html(response);
+            /* Adds Element BEFORE NeighborElement */
+            Element.prototype.appendBefore = function (element) {
+                element.parentNode.insertBefore(this, element);
+            }, false;
+//multi-level
+            var chbx = $('.sub-item :checkbox').on('change', function() {
+                // console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
+            });
+
+
+
+
+            /* Adds Element AFTER NeighborElement */
+            Element.prototype.appendAfter = function (element) {
+                element.parentNode.insertBefore(this, element.nextSibling);
+            }, false;
+
+            /* Typical Creation and Setup A New Orphaned Element Object */
+            var NewElement = document.createElement('div');
+            NewElement.innerHTML = 'JAVA EE';
+            NewElement.id = 'ss';
+
+            /*  Add NewElement BEFORE -OR- AFTER Using the Aforementioned Prototypes */
+            NewElement.appendAfter(document.getElementById(chbx.attr('id')));
+
         },
         error: function()
         {
-            $('.item').html("Nothing");
+            $('.sub-item').html("Nothing");
+
+
         }
     });
 });
@@ -85,14 +120,22 @@ $('#delElement').click(function () {
         url: 'command',
         data: {
             'row': arr[0],
-            'col': arr[1]
+            'col': arr[1],
+            'name':$("#delete").val()
+
         },
         success: function (response) {
-            $('.item').html(response);
+            // $('.sub-item').html("Nothing");
+            var chbx = $('.sub-item :checkbox').on('change', function() {
+                // console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
+            });
+            var elem = document.getElementById(chbx.attr('id'));
+
+            elem.remove();
         },
         error: function()
         {
-            $('.item').html("Nothing");
+            $('.sub-item').html("Nothing");
         }
     });
 });

@@ -21,8 +21,10 @@
 
         <ul class="head-menu">
             <li class="sub-point"><input type="checkbox" id="menu"/>
+                <img  src="images/menu.png" class="arrow">
                 <label for="menu" id="nav-icon"> Hard Skills</label></li>
             <li class="sub-point"> <input type="checkbox" id="menu1"/>
+                <img  src="images/menu.png" class="arrow">
                 <label for="menu1" id="nav-icon"> Soft  Skills</label></li>
             <li class="sub-point-1">
                 <input id="spterm" type="text" name="spterm" placeholder="Search?"><br />
@@ -37,7 +39,7 @@
                     <input type="checkbox" id="{{columnNumber}}-{{rowNumber}}"/>
 
                     <img  src="images/click.png" class="arrow"><label for="{{rowNumber}}">{{name}}</label>
-                    <label for="{{rowNumber}}">{{childList.length}}</label>
+                    <label  id="{{columnNumber}}-{{rowNumber}}"  for="{{rowNumber}}">{{childList.length}}</label>
 
                     <ul>
                         {{#each childList}}
@@ -46,12 +48,12 @@
                                 <input type="checkbox" id="{{columnNumber}}-{{rowNumber}}"/>
 
                                 <img src="images/click.png" class="arrow"><label for="{{rowNumber}}">{{name}}</label>
-                                <label for="{{rowNumber}}">{{childList.length}}</label>
+                                <label id="{{columnNumber}}-{{rowNumber}}"  for="{{rowNumber}}">{{childList.length}}</label>
                                 <ul>
                                     {{#each childList}}
                                     <li>
                                         <div class="sub-item-1">
-                                            <input type="checkbox" id="{{rowNumber}}"/>
+                                            <input type="checkbox" id="{{columnNumber}}-{{rowNumber}}"/>
 
                                             <img  src="images/click.png" class="arrow"><label
                                                 for="{{rowNumber}}">{{name}}</label>
@@ -76,41 +78,40 @@
                                     {{/each}}
                                 </ul>
 
+
                             </div>
                         </li>
                         {{/each}}
                     </ul>
-
 
                 </div>
                 {{/each}}
             </script>
         </div>
 
+
     </div>
+
 
 </div>
 
-
-
-<ul class="footer-menu">
-<li class="foot-item">
-    <input  type="text"  id="add"><br>
-    <a id="addElement" href="#">Add element</a>
-    <div id="container"></div>
-</li>
-    </li>
-
-    <li class="foot-item">
-    <input type="text" id="delete">
-        <a id="delElement" href="#">Delete</a>
-    </li>
-
-    <li class="foot-item">
-    <input  type="text"  id="change"><br>
-        <a id="changeName" href="#">Change name</a>
-    </li>
+<div class="footer-menu">
+<ul class="foot-item-add">
+<li><input  type="text"  id="add"><br></li>
+    <li> <a id="addElement" href="#">Add element</a></li>
 </ul>
+
+    <ul class="foot-item-del">
+    <li><input type="text" id="delete"></li>
+        <li> <a id="delElement" href="#">Delete</a></li>
+    </ul>
+
+    <ul class="foot-item-chan">
+    <li><input  type="text"  id="change"><br></li>
+        <li><a id="changeName" href="#">Change name</a></li>
+    </ul>
+</div>
+
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/handlebars-v4.0.11.js"></script>
 <script src="js/all.js"></script>
