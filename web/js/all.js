@@ -22,19 +22,20 @@ var chbx = $('.sub-item :checkbox').on('change', function() {
 });
 
 //Split row and column data
-arr = chbx.attr('id').split('-');
+//arr = chbx.attr('id').split('-');
 
 //Change name function
 $('#changeName').click(function () {
-    arr = chbx.attr('id').split('-');
+    // arr = chbx.attr('id').split('-');
     $.ajax({
-        type: "POST",
+        type: "GET",
         cache: false,
         url: 'controller',
         data: {
+            'command': 'change_val',
             'name': $("#change").val(),
-            'row': arr[0],
-            'col': arr[1]
+            'row':2,
+            'col': 2
         },
         success: function (response) {
             // $('.sub-item').html("Nothing");
@@ -54,13 +55,13 @@ $('#changeName').click(function () {
 
 //Add element function
 $('#addElement').click(function () {
-   arr = chbx.attr('id').split('-');
+    // arr = chbx.attr('id').split('-');
     $.ajax({
         type: "GET",
         cache: false,
         url: 'controller',
         data: {
-
+            'command': 'add_val',
             'name': $("#add").val(),
             'row': 2,
             'col': 2
@@ -92,17 +93,18 @@ $('#addElement').click(function () {
     });
 });
 
-//POST del elem
+// del elem
 
 $('#delElement').click(function () {
-    arr = chbx.attr('id').split('-');
+    // arr = chbx.attr('id').split('-');
     $.ajax({
-        type: "POST",
+        type: "GET",
         cache: false,
         url: 'controller',
         data: {
-            'row': arr[0],
-            'col': arr[1]
+            'command': 'delete_val',
+            'row': 2,
+            'col': 2
         },
         success: function (response) {
             var chbx = $('.sub-item :checkbox').on('change', function() {

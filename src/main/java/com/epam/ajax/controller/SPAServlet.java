@@ -1,5 +1,7 @@
 package com.epam.ajax.controller;
 
+import com.epam.ajax.command.ActionCommand;
+import com.epam.ajax.command.CommandManager;
 import com.epam.ajax.excel.ExcelAction;
 import com.epam.ajax.excel.Processing;
 import com.epam.ajax.json.JSONRunner;
@@ -16,7 +18,7 @@ import java.io.IOException;
 @WebServlet("/controller")
 public class SPAServlet extends HttpServlet {
 
-    public static final String EX_PATH ="SkillMatrix.xls";
+    static final String COMMAND = "command";
 
     public SPAServlet() {
         super();
@@ -27,51 +29,14 @@ public class SPAServlet extends HttpServlet {
         super.init();
     }
 
-    /**
-     * Add element method.
-     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String xlsPath = req.getServletContext().getRealPath("/")+EX_PATH ;
-        int row = Integer.parseInt(req.getParameter("row"));
-        int column = Integer.parseInt(req.getParameter("col"));
-        String name= req.getParameter("name");
-        new ExcelAction().sheetOperation(row,column,"add",name,xlsPath);
-        new JSONRunner().createJSON();
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(name);
+        String action = req.getParameter(COMMAND);
+        ActionCommand command = CommandManager.takeActionCommand(action);
+        command.execute(req,resp);
     }
 
-    /**
-     * Delete element method.
-     */
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String xlsPath = req.getServletContext().getRealPath("/")+EX_PATH ;
-        int row = Integer.parseInt(req.getParameter("row"));
-        int column = Integer.parseInt(req.getParameter("col"));
-        String name= req.getParameter("name");
-        new ExcelAction().sheetOperation(row,column,"delete",name,xlsPath);
-        new JSONRunner().createJSON();
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(req.getParameter(name));
-    }
-
-    /**
-     * Change element method.
-     */
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String xlsPath = req.getServletContext().getRealPath("/")+EX_PATH ;
-        String name = req.getParameter("name");
-        int row = Integer.parseInt(req.getParameter("row"));
-        int column = Integer.parseInt(req.getParameter("col"));
-        new ExcelAction().sheetOperation(row,column,"change",name,xlsPath);
-        new JSONRunner().createJSON();
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(name);
     }
 }
