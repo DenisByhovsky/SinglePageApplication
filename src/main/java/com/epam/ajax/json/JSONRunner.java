@@ -18,9 +18,12 @@ public class JSONRunner {
 
     private static final Logger LOGGER = LogManager.getLogger(JSONRunner.class.getName());
 
-    private static final String JSON_PATH = "runner.json";
+    private static final String JSON_PATH = "web/runner.json";
 
     public JSONRunner() {
+        Processing parser = new Processing();
+        parser.readFromData();
+        parser.parseXls();
         createJSON();
         LOGGER.log(Level.INFO,"Json was created");
     }
@@ -31,10 +34,10 @@ public class JSONRunner {
      */
     public void createJSON() {
         Processing parser = new Processing();
-        parser.read();
+        parser.readFromData();
         Gson gson = new Gson();
         String element = gson.toJson(
-                parser.parse().get(0).getChildList(),
+                parser.parseXls().get(0).getChildList(),
                 new TypeToken<List<Skill>>() {
                 }.getType());
 

@@ -19,7 +19,7 @@ public class ExcelAction {
 
     private static final Logger LOGGER = LogManager.getLogger(ExcelAction.class.getName());
 
-    public static final String SH_NAME ="Skill Matrix";
+    public static final String SH_NAME ="SkillMatrix";
     public static final String EX_PATH ="SkillMatrix.xls";
 
     /**
@@ -82,6 +82,9 @@ public class ExcelAction {
                 cell.setCellValue(name);
                 LOGGER.log(Level.INFO,"Changed successfully");
                 break;
+
+            default:
+                throw  new UnsupportedOperationException();
         }
         file.close();
         FileOutputStream outFile = new FileOutputStream(new File(EX_PATH ));

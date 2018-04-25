@@ -22,8 +22,11 @@ public class Processing {
 
     private static final Logger LOGGER = LogManager.getLogger(Processing.class.getName());
 
-    private static final String SHEET_NAME ="Skill Matrix";
+    private static final String SHEET_NAME ="SkillMatrix";
     private static final String PATH_NAME ="SkillMatrix.xls";
+    private static final int START_COL =0;
+    private static final int START_ROW =1;
+
     public HSSFSheet sheet;
 
     public Processing() { }
@@ -32,17 +35,17 @@ public class Processing {
      * read
      * Method read all data from file.
      */
-    public void read() {
+    public void readFromData() {
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(new File(PATH_NAME));
             HSSFWorkbook book = null;
             book = new HSSFWorkbook(fis);
             HSSFSheet sheet = book.getSheet(SHEET_NAME);
+            this.sheet = sheet;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.sheet = sheet;
     }
 
     /**
@@ -58,11 +61,11 @@ public class Processing {
         for (int i = startRow; i < endRow; ) {
             Row row = sheet.getRow(i);
             Cell cell = row.getCell(columnNumber);
-            String cellValue = cell.getStringCellValue();
+            String name = cell.getStringCellValue();
             int columnIndex = cell.getColumnIndex();
             int rowIndex = cell.getRowIndex();
             int nextElementNumber = getNextElement(i + 1, endRow, columnNumber);
-            Skill skill = new Skill(cellValue, columnIndex, rowIndex);
+            Skill skill = new Skill(name, columnIndex, rowIndex);
             skill.setChildList(parseSheet(i + 1, nextElementNumber, columnNumber + 1));
             skills.add(skill);
             i = nextElementNumber;
@@ -88,9 +91,9 @@ public class Processing {
             Row row = sheet.getRow(i);
             if (row.getCell(columnNumber) != null) {
                 indexNextRowNumber = i;
-                LOGGER.log(Level.INFO, "i count: " +i);
                 break;
             }
+            LOGGER.log(Level.INFO, "i count: " +i);
         }
         return indexNextRowNumber;
     }
@@ -100,8 +103,8 @@ public class Processing {
      * Method  initializate private parse Sheet method.
      * @return List
      */
-    public List<Skill> parse() {
-        return  parseSheet(1, sheet.getLastRowNum() + 1, 0);
+    public List<Skill> parseXls() {
+        return  parseSheet(START_ROW, sheet.getLastRowNum() + 1, START_COL);
     }
 }
 

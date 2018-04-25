@@ -92,7 +92,6 @@
     </ul>
 
     <ul class="foot-item-del">
-        <li><input type="text" id="delete"></li>
         <li> <a id="delElement" href="#">Delete</a></li>
     </ul>
 

@@ -1,6 +1,7 @@
 package com.epam.ajax.controller;
 
 import com.epam.ajax.excel.ExcelAction;
+import com.epam.ajax.excel.Processing;
 import com.epam.ajax.json.JSONRunner;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +13,20 @@ import java.io.IOException;
 /** SPAServlet
  * @author Denis Byhovsky
  */
-@WebServlet("/command")
+@WebServlet("/controller")
 public class SPAServlet extends HttpServlet {
 
     public static final String EX_PATH ="SkillMatrix.xls";
+
+    public SPAServlet() {
+        super();
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
+
     /**
      * Add element method.
      */
@@ -62,10 +73,5 @@ public class SPAServlet extends HttpServlet {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(name);
-    }
-
-    @Override
-    public void destroy() {
-        super.destroy();
     }
 }

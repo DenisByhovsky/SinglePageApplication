@@ -22,15 +22,15 @@ var chbx = $('.sub-item :checkbox').on('change', function() {
 });
 
 //Split row and column data
-//arr = chbx.attr('id').split('-');
+arr = chbx.attr('id').split('-');
 
 //Change name function
 $('#changeName').click(function () {
-
+    arr = chbx.attr('id').split('-');
     $.ajax({
         type: "POST",
         cache: false,
-        url: 'command',
+        url: 'controller',
         data: {
             'name': $("#change").val(),
             'row': arr[0],
@@ -39,7 +39,6 @@ $('#changeName').click(function () {
         success: function (response) {
             // $('.sub-item').html("Nothing");
             var chbx = $('.sub-item :checkbox').on('change', function() {
-                // console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
             })
 
             document.getElementById(chbx.attr('id')).innerHTML=$("#change").val();
@@ -55,11 +54,11 @@ $('#changeName').click(function () {
 
 //Add element function
 $('#addElement').click(function () {
-    //   arr = chbx.attr('id').split('-');
+   arr = chbx.attr('id').split('-');
     $.ajax({
         type: "GET",
         cache: false,
-        url: 'command',
+        url: 'controller',
         data: {
 
             'name': $("#add").val(),
@@ -96,14 +95,14 @@ $('#addElement').click(function () {
 //POST del elem
 
 $('#delElement').click(function () {
+    arr = chbx.attr('id').split('-');
     $.ajax({
         type: "POST",
         cache: false,
-        url: 'command',
+        url: 'controller',
         data: {
             'row': arr[0],
-            'col': arr[1],
-            'name':$("#delete").val()
+            'col': arr[1]
         },
         success: function (response) {
             var chbx = $('.sub-item :checkbox').on('change', function() {

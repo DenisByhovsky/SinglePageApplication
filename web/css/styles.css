@@ -33,6 +33,9 @@ label {
 }
 
 a {
+    background-color: #2196f37a;
+    padding: 6PX;
+    border-radius: 4px;
     text-decoration: none;
     color: white;
     font-size: 0.8em;
@@ -41,7 +44,9 @@ a {
 
 
 span.highlight {
-    background-color: #db3405; cursor: pointer; }
+    background-color: #db3405; cursor: pointer;
+}
+
 span.splink {
     color: #212121; cursor: pointer; }
 
@@ -63,9 +68,23 @@ span.splink {
     padding: 11px;
     font-size: 1.4em;
     margin-bottom: -10px;
+    position: fixed;
+    left: 0; bottom: 0;
+    width: 100%;
+
 }
 .sub-point-1{
     margin-left: 200px;
+}
+
+
+.item input:checked ~ ul {
+    display: block;
+}
+
+
+.item ul{
+    display: none;
 }
 
 .multi-level{
@@ -91,4 +110,17 @@ span.splink {
 
 .foot-item-chan{
     display: inline-flex;
+}
+
+.item input + .arrow {
+    transform: rotate(-90deg);
+    transition: 0.1s;
+}
+.item input:checked + .arrow {
+    transform: rotate(0deg);
+    transition: 0.1s;
+}
+
+.nav{
+    font-size: 1em;
 }

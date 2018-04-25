@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author Denis Byhovsky
  */
 public class Skill {
-    private String value;
+    private String name;
     private int columnNumber;
     private int rowNumber;
 
@@ -16,8 +16,8 @@ public class Skill {
 
     public Skill() { }
 
-    public Skill(String value, int columnNumber, int rowNumber) {
-        this.value = value;
+    public Skill(String name, int columnNumber, int rowNumber) {
+        this.name = name;
         this.columnNumber = columnNumber;
         this.rowNumber = rowNumber;
     }
@@ -30,54 +30,27 @@ public class Skill {
         this.childList = childList;
     }
 
-    public String getValue() {
-        return value;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getColumnNumber() {
         return columnNumber;
     }
 
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
     public void setColumnNumber(int columnNumber) {
         this.columnNumber = columnNumber;
     }
 
+    public int getRowNumber() {
+        return rowNumber;
+    }
+
     public void setRowNumber(int rowNumber) {
         this.rowNumber = rowNumber;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Skill skill = (Skill) o;
-        return columnNumber == skill.columnNumber &&
-                rowNumber == skill.rowNumber &&
-                Objects.equals(value, skill.value) &&
-                Objects.equals(childList, skill.childList);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(value, columnNumber, rowNumber, childList);
-    }
-
-    @Override
-    public String toString() {
-        return "Skill{" +
-                "name='" + value + '\'' +
-                ", columnNumber=" + columnNumber +
-                ", rowNumber=" + rowNumber +
-                ", childList=" + childList +
-                '}';
     }
 }
