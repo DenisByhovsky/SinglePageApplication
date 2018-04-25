@@ -27,6 +27,14 @@ public class ExcelAction {
     HSSFWorkbook workbook = null;
     HSSFSheet sheet = null;
 
+    /**
+     * add Value
+     * Method add value into cell.
+     * @param rowNo int
+     * @param cellNumb int
+     * @param name String
+     * @param xlsPath String
+     */
     public void addValue( int rowNo, int cellNumb,String name, String xlsPath) throws IOException {
         FileInputStream file = new FileInputStream(new File(EX_PATH ));
         workbook = new HSSFWorkbook(file);
@@ -49,8 +57,15 @@ public class ExcelAction {
         FileOutputStream outFile = new FileOutputStream(new File(EX_PATH ));
         workbook.write(outFile);
         outFile.close();
-
     }
+
+    /**
+     * delete Value
+     * Method delete value from cell.
+     * @param rowNo int
+     * @param cellNumb int
+     * @param xlsPath String
+     */
     public void deleteValue( int rowNo, int cellNumb,  String xlsPath) throws IOException {
         FileInputStream file = new FileInputStream(new File(EX_PATH ));
         workbook = new HSSFWorkbook(file);
@@ -72,8 +87,14 @@ public class ExcelAction {
         outFile.close();
     }
 
+    /**
+     * delete Value
+     * Method delete value from cell.
+     * @param rowNo int
+     * @param cellNumb int
+     * @param xlsPath String
+     */
     public void changeValue( int rowNo, int cellNumb, String name, String xlsPath) throws IOException {
-
         FileInputStream file = new FileInputStream(new File(EX_PATH ));
         workbook = new HSSFWorkbook(file);
         sheet = workbook.getSheet(SH_NAME);

@@ -14,7 +14,6 @@ public class JsonTest {
 
     @Test
     public void testResources() throws IOException, ParseException {
-
         JSONParser parserBack = new JSONParser();
         Object obj = null;
         obj = parserBack.parse(new FileReader(TEST_NAME));

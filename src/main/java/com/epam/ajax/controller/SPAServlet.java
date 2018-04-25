@@ -2,9 +2,6 @@ package com.epam.ajax.controller;
 
 import com.epam.ajax.command.ActionCommand;
 import com.epam.ajax.command.CommandManager;
-import com.epam.ajax.excel.ExcelAction;
-import com.epam.ajax.excel.Processing;
-import com.epam.ajax.json.JSONRunner;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +34,6 @@ public class SPAServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }
 }

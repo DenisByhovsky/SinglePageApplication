@@ -4,11 +4,13 @@ import com.epam.ajax.command.ActionCommand;
 import com.epam.ajax.exception.ServiceException;
 import com.epam.ajax.service.ValueService;
 import com.epam.ajax.service.impl.ValueServiceImpl;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/** AddValCommand
+ * @author Denis Byhovsky
+ */
 public class AddValCommand implements ActionCommand {
 
     private ValueService valueService = ValueServiceImpl.getInstance();

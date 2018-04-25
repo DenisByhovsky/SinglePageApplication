@@ -29,7 +29,6 @@ public class JSONRunner {
     }
 
     /**
-     * create JSON
      * Method create json file from list.
      */
     public void createJSON() {

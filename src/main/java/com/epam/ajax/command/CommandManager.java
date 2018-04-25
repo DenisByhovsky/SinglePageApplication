@@ -10,6 +10,9 @@ import java.util.Map;
 
 import static com.epam.ajax.command.Operation.convert;
 
+/** CommandManager
+ * @author Denis Byhovsky
+ */
 public class CommandManager {
 
     private static final Logger LOGGER = LogManager.getLogger(CommandManager.class.getName());
@@ -28,8 +31,7 @@ public class CommandManager {
         Operation operation= convert(command);
         LOGGER.log(Level.INFO,"Converted action command");
         if (operation== null) {
-            operation = Operation.NO_COMMAND;
-            LOGGER.log(Level.INFO,"No such command, redirect to login page");
+            throw new UnsupportedOperationException();
         }
         return map.get(operation);
     }

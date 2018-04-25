@@ -3,7 +3,6 @@ import com.epam.ajax.excel.Processing;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class ParserTest {
     @Test
     public void testParserList() {
@@ -11,7 +10,6 @@ public class ParserTest {
         processing.readFromData();
         Assert.assertEquals(2,processing.parseXls().size());
     }
-
 
     @Test
     public void testParserHeadList() {

@@ -19,8 +19,8 @@
 
 
 **Used technologies:**
-*  Composite pattern
-*  Servlets
+*  Composite, command  patterns
+*  Servlet
 *  JSP
 *  Handlebars
 *  Tomcat 8.5

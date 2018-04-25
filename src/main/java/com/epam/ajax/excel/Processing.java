@@ -22,7 +22,7 @@ public class Processing {
 
     private static final Logger LOGGER = LogManager.getLogger(Processing.class.getName());
 
-    private static final String SHEET_NAME ="SkillMatrix";
+    private static final String SHEET_NAME ="Skill Matrix";
     private static final String PATH_NAME ="SkillMatrix.xls";
     private static final int START_COL =0;
     private static final int START_ROW =1;
@@ -32,7 +32,6 @@ public class Processing {
     public Processing() { }
 
     /**
-     * read
      * Method read all data from file.
      */
     public void readFromData() {
@@ -47,9 +46,7 @@ public class Processing {
             e.printStackTrace();
         }
     }
-
     /**
-     * parse Sheet
      * Method  parse all cells in a sheet.
      * @param startRow int
      * @param endRow int
@@ -76,9 +73,7 @@ public class Processing {
         return skills;
     }
 
-
     /**
-     * get Next Element
      * Method  parse all cells in a sheet.
      * @param startRow int
      * @param endRow int
@@ -99,7 +94,6 @@ public class Processing {
     }
 
     /**
-     * parse initialization
      * Method  initializate private parse Sheet method.
      * @return List
      */

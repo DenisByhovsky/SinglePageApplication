@@ -53,4 +53,30 @@ public class Skill {
     public void setRowNumber(int rowNumber) {
         this.rowNumber = rowNumber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Skill skill = (Skill) o;
+        return columnNumber == skill.columnNumber &&
+                rowNumber == skill.rowNumber &&
+                Objects.equals(name, skill.name) &&
+                Objects.equals(childList, skill.childList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, columnNumber, rowNumber, childList);
+    }
+
+    @Override
+    public String toString() {
+        return "Skill{" +
+                "name='" + name + '\'' +
+                ", columnNumber=" + columnNumber +
+                ", rowNumber=" + rowNumber +
+                ", childList=" + childList +
+                '}';
+    }
 }

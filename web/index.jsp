@@ -12,10 +12,10 @@
         <!-- Header menu-->
         <ul class="head-menu">
             <li class="sub-point"><input type="checkbox" id="menu"/>
-                <img  src="images/menu.png" class="arrow">
+                <img  src="images/menu.png" class="list-image">
                 <label for="menu" id="nav-icon"> Hard Skills</label></li>
             <li class="sub-point"> <input type="checkbox" id="menu1"/>
-                <img  src="images/menu.png" class="arrow">
+                <img  src="images/menu.png" class="list-image">
                 <label for="menu1" id="nav-icon"> Soft  Skills</label></li>
             <li class="sub-point-1">
                 <input id="spterm" type="text" name="spterm" placeholder="Search?"><br />
@@ -31,7 +31,7 @@
                 <div class="item">
                     <input type="checkbox" id="{{columnNumber}}-{{rowNumber}}"/>
 
-                    <img  src="images/click.png" class="arrow"><label for="{{rowNumber}}">{{name}}</label>
+                    <img  src="images/click.png" class="list-image"><label for="{{rowNumber}}">{{name}}</label>
                     <label  id="{{columnNumber}}-{{rowNumber}}"  for="{{rowNumber}}">{{childList.length}}</label>
 
                     <ul>
@@ -40,7 +40,7 @@
                             <div class="sub-item">
                                 <input type="checkbox" id="{{columnNumber}}-{{rowNumber}}"/>
 
-                                <img src="images/click.png" class="arrow"><label for="{{rowNumber}}">{{name}}</label>
+                                <img src="images/click.png" class="list-image"><label for="{{rowNumber}}">{{name}}</label>
                                 <label id="{{columnNumber}}-{{rowNumber}}"  for="{{rowNumber}}">{{childList.length}}</label>
                                 <ul>
                                     {{#each childList}}
@@ -48,7 +48,7 @@
                                         <div class="sub-item-1">
                                             <input type="checkbox" id="{{columnNumber}}-{{rowNumber}}"/>
 
-                                            <img  src="images/click.png" class="arrow"><label
+                                            <img  src="images/click.png" class="list-image"><label
                                                 for="{{rowNumber}}">{{name}}</label>
                                             <label for="{{rowNumber}}">{{childList.length}}</label>
                                             <ul>

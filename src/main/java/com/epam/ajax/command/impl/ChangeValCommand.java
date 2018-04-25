@@ -1,15 +1,16 @@
 package com.epam.ajax.command.impl;
 
 import com.epam.ajax.command.ActionCommand;
-import com.epam.ajax.command.CommandManager;
 import com.epam.ajax.exception.ServiceException;
 import com.epam.ajax.service.ValueService;
 import com.epam.ajax.service.impl.ValueServiceImpl;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/** ChangeValCommand
+ * @author Denis Byhovsky
+ */
 public class ChangeValCommand implements ActionCommand {
 
     private ValueService valueService = ValueServiceImpl.getInstance();

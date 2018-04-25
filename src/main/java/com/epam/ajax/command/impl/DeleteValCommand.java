@@ -4,11 +4,13 @@ import com.epam.ajax.command.ActionCommand;
 import com.epam.ajax.exception.ServiceException;
 import com.epam.ajax.service.ValueService;
 import com.epam.ajax.service.impl.ValueServiceImpl;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/** DeleteValCommand
+ * @author Denis Byhovsky
+ */
 public class DeleteValCommand implements ActionCommand {
 
     private ValueService valueService = ValueServiceImpl.getInstance();
@@ -17,7 +19,6 @@ public class DeleteValCommand implements ActionCommand {
     public String execute(HttpServletRequest req,HttpServletResponse resp) {
         int row = Integer.parseInt(req.getParameter("row"));
         int column = Integer.parseInt(req.getParameter("col"));
-        String name= req.getParameter("name");
         try {
             valueService.delete(row,column,PATH_XLS);
             valueService.parseToJSON();

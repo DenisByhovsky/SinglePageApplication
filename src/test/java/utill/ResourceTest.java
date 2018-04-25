@@ -6,7 +6,7 @@ import java.io.File;
 
 public class ResourceTest {
 
-    public  static final  String FILE_NAME= "9.xls";
+    public  static final  String FILE_NAME= "SkillMatrix.xls";
 
     @Test
     public  void testResources() {

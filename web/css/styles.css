@@ -112,11 +112,11 @@ span.splink {
     display: inline-flex;
 }
 
-.item input + .arrow {
+.item input + .list-image {
     transform: rotate(-90deg);
     transition: 0.1s;
 }
-.item input:checked + .arrow {
+.item input:checked + .list-image {
     transform: rotate(0deg);
     transition: 0.1s;
 }

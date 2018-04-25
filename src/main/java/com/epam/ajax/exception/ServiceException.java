@@ -1,5 +1,8 @@
 package com.epam.ajax.exception;
 
+/** ServiceException
+ * @author Denis Byhovsky
+ */
 public class ServiceException extends  Exception{
 
     public ServiceException() {
