@@ -18,7 +18,7 @@ public class JSONRunner {
 
     private static final Logger LOGGER = LogManager.getLogger(JSONRunner.class.getName());
 
-    private static final String JSON_PATH = "web/runner1.json";
+    private static final String JSON_PATH = "web/runner.json";
 
     public JSONRunner() {
         createJSON();

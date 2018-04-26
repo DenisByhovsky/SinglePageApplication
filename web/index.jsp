@@ -24,6 +24,8 @@
         </ul>
         <!-- End header menu-->
 
+        <div id="content"></div>
+
         <%--{{#each this}}--%>
         <div class="multi-level">
             <script id="skills-template" type="x-handlebars-template">

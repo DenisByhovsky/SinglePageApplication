@@ -21,12 +21,10 @@ var chbx = $('.sub-item :checkbox').on('change', function() {
     console.log('Value: ' + $(this).val() + '\n' + 'ID: ' + $(this).attr('id') + '\n' + 'Index: ' + chbx.index(this));
 });
 
-//Split row and column data
-//arr = chbx.attr('id').split('-');
-
 //Change name function
 $('#changeName').click(function () {
-    // arr = chbx.attr('id').split('-');
+    var chbx = $('.sub-item :checkbox').on('change');
+    arr = chbx.attr('id').split('-');
     $.ajax({
         type: "GET",
         cache: false,
@@ -34,20 +32,21 @@ $('#changeName').click(function () {
         data: {
             'command': 'change_val',
             'name': $("#change").val(),
-            'row':2,
-            'col': 2
+            'row': arr[1],
+            'col': arr[0]
         },
         success: function (response) {
-            // $('.sub-item').html("Nothing");
-            var chbx = $('.sub-item :checkbox').on('change', function() {
-            })
-
-            document.getElementById(chbx.attr('id')).innerHTML=$("#change").val();
+            //JS part to change name
+            // var chbx = $('.sub-item :checkbox').on('change');
+            // document.getElementById(chbx.attr('id')).innerHTML='hh';
+            $('#content').html(response);
+            $.getJSON("runner.json", function (data) {
+                generateAllSkillsHTML(data);
+            });
         },
         error: function()
         {
-            $('.sub-item').html("Nothing");
-
+            $('#content').html("Nothing");
         }
     });
 });
@@ -55,7 +54,8 @@ $('#changeName').click(function () {
 
 //Add element function
 $('#addElement').click(function () {
-    // arr = chbx.attr('id').split('-');
+    var chbx = $('.sub-item :checkbox').on('change');
+    arr = chbx.attr('id').split('-');
     $.ajax({
         type: "GET",
         cache: false,
@@ -63,58 +63,65 @@ $('#addElement').click(function () {
         data: {
             'command': 'add_val',
             'name': $("#add").val(),
-            'row': 2,
-            'col': 2
+            'row': arr[1],
+            'col': arr[0]
         },
         success: function (response) {
-            /* Adds Element BEFORE NeighborElement */
-            Element.prototype.appendBefore = function (element) {
-                element.parentNode.insertBefore(this, element);
-            }, false;
-            var chbx = $('.sub-item :checkbox').on('change', function() {
+            /* JS part to add element
+            // /* Adds Element BEFORE NeighborElement */
+            // Element.prototype.appendBefore = function (element) {
+            //     element.parentNode.insertBefore(this, element);
+            // }, false;
+            // var chbx = $('.sub-item :checkbox').on('change');
+            // /* Adds Element AFTER NeighborElement */
+            // Element.prototype.appendAfter = function (element) {
+            //     element.parentNode.insertBefore(this, element.nextSibling);
+            // }, false;
+            // /* Typical Creation and Setup A New Orphaned Element Object */
+            // var NewElement = document.createElement('div');
+            // NewElement.innerHTML = $("#add").val();
+            // NewElement.id = 'new';
+            // /*  Add NewElement BEFORE -OR- AFTER Using the Aforementioned Prototypes */
+            // NewElement.appendAfter(document.getElementById(chbx.attr('id')));
+
+            $('#content').html(response);
+            $.getJSON("runner.json", function (data) {
+                generateAllSkillsHTML(data);
             });
-            /* Adds Element AFTER NeighborElement */
-            Element.prototype.appendAfter = function (element) {
-                element.parentNode.insertBefore(this, element.nextSibling);
-            }, false;
-            /* Typical Creation and Setup A New Orphaned Element Object */
-            var NewElement = document.createElement('div');
-            NewElement.innerHTML = 'JAVA EE';
-            NewElement.id = 'ss';
-            /*  Add NewElement BEFORE -OR- AFTER Using the Aforementioned Prototypes */
-            NewElement.appendAfter(document.getElementById(chbx.attr('id')));
         },
         error: function()
         {
-            $('.sub-item').html("Nothing");
-
-
+            $('#content').html("Nothing");
         }
     });
 });
 
-// del elem
-
+// delete element
 $('#delElement').click(function () {
-    // arr = chbx.attr('id').split('-');
+    var chbx = $('.sub-item :checkbox').on('change');
+    arr = chbx.attr('id').split('-');
     $.ajax({
         type: "GET",
         cache: false,
         url: 'controller',
         data: {
             'command': 'delete_val',
-            'row': 2,
-            'col': 2
+            'row': arr[1],
+            'col': arr[0]
         },
         success: function (response) {
-            var chbx = $('.sub-item :checkbox').on('change', function() {
+            //JS part delete element
+            // var chbx = $('.sub-item :checkbox').on('change');
+            // var elem = document.getElementById(chbx.attr('id'));
+            $('#content').html(response);
+            $.getJSON("runner.json", function (data) {
+                generateAllSkillsHTML(data);
             });
-            var elem = document.getElementById(chbx.attr('id'));
-            elem.remove();
+            // elem.remove();
         },
         error: function()
         {
-            $('.sub-item').html("Nothing");
+            $('#content').html("Nothing");
         }
     });
 });
@@ -134,7 +141,6 @@ jQuery(document).ready(function(){
     var n = 0;
     var time_keyup = 0;
     var time_search = 0;
-
     jQuery('body').delegate('#spgo', 'click', function(){
         jQuery('body,html').animate({scrollTop: jQuery('span.highlight:first').offset().top-paddingtop}, scrollspeed);
     });
@@ -172,7 +178,7 @@ jQuery(document).ready(function(){
     jQuery('#spterm').keyup(function(){
         var d1 = new Date();
         time_keyup = d1.getTime();
-        if (jQuery('#spterm').val()!=term) // проверяем, изменилась ли строка
+        if (jQuery('#spterm').val()!=term)
             if (jQuery('#spterm').val().length>=minlen) {
                 setTimeout(function(){
                     var d2 = new Date();
