@@ -18,12 +18,9 @@ public class JSONRunner {
 
     private static final Logger LOGGER = LogManager.getLogger(JSONRunner.class.getName());
 
-    private static final String JSON_PATH = "web/runner.json";
+    private static final String JSON_PATH = "web/runner1.json";
 
     public JSONRunner() {
-        Processing parser = new Processing();
-        parser.readFromData();
-        parser.parseXls();
         createJSON();
         LOGGER.log(Level.INFO,"Json was created");
     }
