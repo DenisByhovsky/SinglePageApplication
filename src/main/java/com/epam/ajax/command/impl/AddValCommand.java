@@ -13,15 +13,14 @@ import java.io.IOException;
  */
 public class AddValCommand implements ActionCommand {
 
-    private ValueService valueService = ValueServiceImpl.getInstance();
-
     @Override
     public String execute(HttpServletRequest req,HttpServletResponse resp)  {
+        ValueService valueService = ValueServiceImpl.getInstance();
         int row = Integer.parseInt(req.getParameter("row"));
         int column = Integer.parseInt(req.getParameter("col"));
         String name= req.getParameter("name");
         try {
-            valueService.create(row,column,name,PATH_XLS);
+            valueService.create(row,column,name,req.getServletContext().getRealPath("/")+PATH_XLS);
             valueService.parseToJSON();
         } catch (IOException e) {
             new ServiceException(e);

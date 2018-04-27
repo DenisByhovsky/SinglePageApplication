@@ -20,7 +20,7 @@ public class DeleteValCommand implements ActionCommand {
         int row = Integer.parseInt(req.getParameter("row"));
         int column = Integer.parseInt(req.getParameter("col"));
         try {
-            valueService.delete(row,column,PATH_XLS);
+            valueService.delete(row,column,req.getServletContext().getRealPath("/")+PATH_XLS);
             valueService.parseToJSON();
         } catch (IOException e) {
             new ServiceException(e);
