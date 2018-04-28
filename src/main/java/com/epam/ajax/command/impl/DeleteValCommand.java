@@ -16,14 +16,14 @@ public class DeleteValCommand implements ActionCommand {
     private ValueService valueService = ValueServiceImpl.getInstance();
 
     @Override
-    public String execute(HttpServletRequest req,HttpServletResponse resp) {
+    public String execute(HttpServletRequest req,HttpServletResponse resp) throws ServiceException {
         int row = Integer.parseInt(req.getParameter("row"));
         int column = Integer.parseInt(req.getParameter("col"));
         try {
             valueService.delete(row,column,req.getServletContext().getRealPath("/")+PATH_XLS);
             valueService.parseToJSON();
         } catch (IOException e) {
-            new ServiceException(e);
+            throw new ServiceException(e);
         }
         return null;
     }

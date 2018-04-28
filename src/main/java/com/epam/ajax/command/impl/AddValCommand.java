@@ -14,7 +14,7 @@ import java.io.IOException;
 public class AddValCommand implements ActionCommand {
 
     @Override
-    public String execute(HttpServletRequest req,HttpServletResponse resp)  {
+    public String execute(HttpServletRequest req,HttpServletResponse resp) throws ServiceException {
         ValueService valueService = ValueServiceImpl.getInstance();
         int row = Integer.parseInt(req.getParameter("row"));
         int column = Integer.parseInt(req.getParameter("col"));
@@ -23,7 +23,7 @@ public class AddValCommand implements ActionCommand {
             valueService.create(row,column,name,req.getServletContext().getRealPath("/")+PATH_XLS);
             valueService.parseToJSON();
         } catch (IOException e) {
-            new ServiceException(e);
+            throw  new ServiceException(e);
         }
         return null;
     }
