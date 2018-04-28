@@ -41,7 +41,7 @@ $('#changeName').click(function () {
             // document.getElementById(chbx.attr('id')).innerHTML='hh';
             $('#content').html(response);
             $.getJSON("runner.json", function (data) {
-                generateAllSkillsHTML(data);
+                generateAllProductsHTML(data);
             });
         },
         error: function()
@@ -86,7 +86,7 @@ $('#addElement').click(function () {
 
             $('#content').html(response);
             $.getJSON("runner.json", function (data) {
-                generateAllSkillsHTML(data);
+                generateAllProductsHTML(data);
             });
         },
         error: function()
@@ -115,7 +115,7 @@ $('#delElement').click(function () {
             // var elem = document.getElementById(chbx.attr('id'));
             $('#content').html(response);
             $.getJSON("runner.json", function (data) {
-                generateAllSkillsHTML(data);
+                generateAllProductsHTML(data);
             });
             // elem.remove();
         },
